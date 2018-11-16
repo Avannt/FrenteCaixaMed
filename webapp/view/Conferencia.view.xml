@@ -1,0 +1,297 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:layout="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" controllerName="aplicacao.controller.Conferencia" displayBlock="true">
+		<Page id="detail" title="Monitor de Conferência" contentOnlyBusy="true" busy="false" floatingFooter="false" navButtonPress="onNavBack" showNavButton="true">
+			<content>
+				<Table id="idTableItens" inset="false" noDataText="Nenhum item inserido!" mode="Delete" delete="onDeleteBeepagem" alternateRowColors="true" items="{ path: 'ItensConference>/', sorter: { path: 'ItemRemessa', ascending: true }}" keyboardMode="Edit">
+					<headerToolbar>
+						<Toolbar height="100%" class="backGround">
+							<form:SimpleForm minWidth="1024" maxContainerCols="3" editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" labelSpanXL="1" emptySpanL="0" emptySpanM="0" emptySpanXL="1" columnsL="3" columnsXL="3" columnsM="3" class="editableForm" busyIndicatorDelay="0">
+								<form:content>
+									<Label textAlign="Left" text="Entrega">
+										<layoutData>
+											<layout:GridData span="L1 M2"/>
+										</layoutData>
+									</Label>
+									<SearchField id="idRemessa" placeholder="Nº Entrega" enableSuggestions="true" search="onRemessa" suggest="_handleValueHelpSearch" suggestionItems="{ path: 'Produtos>/', sorter: { path: 'ProdutoId' }, parameters: {operationMode: 'Client'} }">
+										<suggestionItems>
+											<SuggestionItem text="{Produtos>ProdutoId}" description="{Produtos>Descricao}" key="{Produtos>ProdutoId}"/>
+										</suggestionItems>
+										<layoutData>
+											<layout:GridData span="L2 M3"/>
+										</layoutData>
+									</SearchField>
+									<Label textAlign="Left" text="Cliente">
+										<layoutData>
+											<layout:GridData span="L1 M2"/>
+										</layoutData>
+									</Label>
+									<Input id="idCodDistribuidora" value="{modelCabecalhoOrdem>/codDistribuidora}" enabled="false" class="">
+										<layoutData>
+											<layout:GridData span="L1 M2"/>
+										</layoutData>
+									</Input>
+									<Input id="idNomeDistribuidora" value="{modelCabecalhoOrdem>/nomeDistribuidora}" enabled="false">
+										<layoutData>
+											<layout:GridData span="L4 M3"/>
+										</layoutData>
+									</Input>
+									<Label textAlign="Left" text="Nº Volumes">
+										<layoutData>
+											<layout:GridData span="L2 M2" linebreakM="true"/>
+										</layoutData>
+									</Label>
+									<Input id="idNumVolume" value="{modelCabecalhoOrdem>/totalItens}" enabled="false">
+										<layoutData>
+											<layout:GridData span="L1 M3"/>
+										</layoutData>
+									</Input>
+									<Label textAlign="Left" text="Data Carregto.">
+										<layoutData>
+											<layout:GridData span="L1 M2" linebreakM="true" linebreakL="true"/>
+										</layoutData>
+									</Label>
+									<Input id="idDataCarregamento" value="{modelCabecalhoOrdem>/dataCarregamento}" enabled="false">
+										<layoutData>
+											<layout:GridData span="L2 M3"/>
+										</layoutData>
+									</Input>
+									<Label textAlign="Left" text="Local Exped.">
+										<layoutData>
+											<layout:GridData span="L1 M2"/>
+										</layoutData>
+									</Label>
+									<Input id="idLocalExpedicao" value="{modelCabecalhoOrdem>/localExpedicao}" enabled="false">
+										<layoutData>
+											<layout:GridData span="L1 M2"/>
+										</layoutData>
+									</Input>
+									<Input id="idFilial" value="{modelCabecalhoOrdem>/nomeFilial}" enabled="false">
+										<layoutData>
+											<layout:GridData span="L4 M3"/>
+										</layoutData>
+									</Input>
+									<Label textAlign="Left" text="Peso Líq.">
+										<layoutData>
+											<layout:GridData span="L1 M2"/>
+										</layoutData>
+									</Label>
+									<Input id="idPesoLiq" value="{modelCabecalhoOrdem>/pesoLiquido} KG" enabled="false">
+										<layoutData>
+											<layout:GridData span="L2 M3"/>
+										</layoutData>
+									</Input>
+									<Label textAlign="Left" text="Ult. Item Bipado">
+										<layoutData>
+											<layout:GridData span="L1 M2"/>
+										</layoutData>
+									</Label>
+									<Input id="idUltimoItemBipado" value="{modelCabecalhoOrdem>/ultimoItemBipado}" enabled="false">
+										<layoutData>
+											<layout:GridData span="L2 M4"/>
+										</layoutData>
+									</Input>
+									
+									<Label textAlign="Left" text="Peso Total">
+										<layoutData>
+											<layout:GridData span="L7 M2" linebreakM="true"/>
+										</layoutData>
+									</Label>
+									<Input id="idPesoTotal" value="{modelCabecalhoOrdem>/pesoTotal} KG" enabled="false">
+										<layoutData>
+											<layout:GridData span="L2 M3"/>
+										</layoutData>
+									</Input>
+									<!--<Label textAlign="Left" text="Lote">-->
+									<!--	<layoutData>-->
+									<!--		<layout:GridData span="L4 M2" linebreakM="true"/>-->
+									<!--	</layoutData>-->
+									<!--</Label>-->
+									<!--<Input id="idLote" value="{modelCabecalhoOrdem>/lote}" enabled="false">-->
+									<!--	<layoutData>-->
+									<!--		<layout:GridData span="L2 M3"/>-->
+									<!--	</layoutData>-->
+									<!--</Input>-->
+									<Label textAlign="Left" text="Leitor">
+										<layoutData>
+											<layout:GridData span="L1 M2" linebreakM="true" linebreakL="true"/>
+										</layoutData>
+									</Label>
+									<Input id="idLeitor" enabled="true" submit="onLeitor" maxLength="20">
+										<layoutData>
+											<layout:GridData span="L2 M5"/>
+										</layoutData>
+									</Input>
+									<!--<Label textAlign="Left" text="Qnt. Itens Lidos">-->
+									<!--	<layoutData>-->
+									<!--		<layout:GridData span="L1 M2"/>-->
+									<!--	</layoutData>-->
+									<!--</Label>-->
+									<!--<Input id="idQntLidos" value="{modelCabecalhoOrdem>/quantidadeItensLidos}" enabled="false">-->
+									<!--	<layoutData>-->
+									<!--		<layout:GridData span="L2 M3"/>-->
+									<!--	</layoutData>-->
+									<!--</Input>-->
+									<!--<Label textAlign="Left" text="Qnt.Total Itens">-->
+									<!--	<layoutData>-->
+									<!--		<layout:GridData span="L1 M2"/>-->
+									<!--	</layoutData>-->
+									<!--</Label>-->
+									<!--<Input id="idQtdItens" enabled="false">-->
+									<!--	<layoutData>-->
+									<!--		<layout:GridData span="L2 M3"/>-->
+									<!--	</layoutData>-->
+									<!--</Input>-->
+									<!--<Label textAlign="Left" text="Qnt. Picks">-->
+									<!--	<layoutData>-->
+									<!--		<layout:GridData span="L10 M2"/>-->
+									<!--	</layoutData>-->
+									<!--</Label>-->
+									<!--<Input id="idQntPicks" enabled="false">-->
+									<!--	<layoutData>-->
+									<!--		<layout:GridData span="L2 M2"/>-->
+									<!--	</layoutData>-->
+									<!--</Input>-->
+									<!--<Label textAlign="Left" text="Preço Mínimo">-->
+									<!--	<layoutData>-->
+									<!--		<layout:GridData span="L2 M2"/>-->
+									<!--	</layoutData>-->
+									<!--</Label>-->
+									<!--<Input id="idPrecoMinimo" enabled="false" >-->
+									<!--	<layoutData>-->
+									<!--		<layout:GridData span="L2 M2"/>-->
+									<!--	</layoutData>-->
+									<!--</Input>-->
+									<Label textAlign="Left" text="">
+										<layoutData>
+											<layout:GridData span="L1 M8" linebreakM="true"/>
+										</layoutData>
+									</Label>
+									<Label textAlign="Left" text="Ficha Conferida">
+										<layoutData>
+											<layout:GridData span="L1 M2" linebreakL="true"/>
+										</layoutData>
+									</Label>
+									<ObjectStatus icon="{modelCabecalhoOrdem>/statusFichaConferida_Icone}" state="{modelCabecalhoOrdem>/statusFichaConferida_Status}">
+										<layoutData>
+											<layout:GridData span="L1 M1"/>
+										</layoutData>
+									</ObjectStatus>
+									<Label textAlign="Left" text="Ficha Finalizada">
+										<layoutData>
+											<layout:GridData span="L1 M2" linebreakM="true"/>
+										</layoutData>
+									</Label>
+									<ObjectStatus icon="{modelCabecalhoOrdem>/statusFichaFinalizada_Icone}" state="{modelCabecalhoOrdem>/statusFichaFinalizada_Status}">
+										<layoutData>
+											<layout:GridData span="L1 M1"/>
+										</layoutData>
+									</ObjectStatus>
+									<Label textAlign="Left" text="Picking Completo">
+										<layoutData>
+											<layout:GridData span="L1 M2"/>
+										</layoutData>
+									</Label>
+									<ObjectStatus icon="{modelCabecalhoOrdem>/statusFichaPicking_Icone}" state="{modelCabecalhoOrdem>/statusFichaPicking_Status}">
+										<layoutData>
+											<layout:GridData span="L1 M1"/>
+										</layoutData>
+									</ObjectStatus>
+									<Label textAlign="Left" text="Finalizar Remessa">
+										<layoutData>
+											<layout:GridData span="L1 M2"/>
+										</layoutData>
+									</Label>
+									<ObjectStatus icon="{modelCabecalhoOrdem>/statusRemessaFinalizada_Icone}" state="{modelCabecalhoOrdem>/statusRemessaFinalizada_Status}" >
+										<layoutData>
+											<layout:GridData span="L1 M1"/>
+										</layoutData>
+									</ObjectStatus>
+									<Label textAlign="Left" text="Impressão Realizada">
+										<layoutData>
+											<layout:GridData span="L1 M2"/>
+										</layoutData>
+									</Label>
+									<ObjectStatus icon="{modelCabecalhoOrdem>/statusFichaEtiqImpressa_Icone}" state="{modelCabecalhoOrdem>/statusFichaEtiqImpressa_Status}" >
+										<layoutData>
+											<layout:GridData span="L1 M1"/>
+										</layoutData>
+									</ObjectStatus>
+								</form:content>
+							</form:SimpleForm>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="70px">
+							<Text text="Remessa"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="30px">
+							<Text text="Item"/>
+						</Column>
+						<!--<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="60px">-->
+						<!--	<Text text="Mat.embal."/>-->
+						<!--</Column>-->
+						<Column hAlign="Left" width="60px">
+							<Text text="Nº Mat"/>
+						</Column>
+						<Column hAlign="Left" minScreenWidth="1000px" width="auto" demandPopin="true">
+							<Text text="Desc Mat."/>
+						</Column>
+						<Column hAlign="Left" width="80px">
+							<Text text="Qtde Remessa"/>
+						</Column>
+						<Column hAlign="Left" width="80px">
+							<Text text="Qtde Conferida"/>
+						</Column>
+						<Column hAlign="Left Picking" width="80px">
+							<Text text="Qtde Faltante"/>
+						</Column>
+						<!--<Column hAlign="Left" width="200px">-->
+						<!--	<Text text="Cod EAN"/>-->
+						<!--</Column>-->
+						<!--<Column hAlign="Left" width="80px">-->
+						<!--	<Text text="Posição"/>-->
+						<!--</Column>-->
+						<Column hAlign="Left" width="auto" demandPopin="true" popinDisplay="Inline">
+							<Text text="Picking"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<customData>
+								<core:CustomData key="mydata" value="{ItensConference>linhaVerde}"  writeToDom="true"/>
+							</customData>
+							<customData>
+								<core:CustomData key="mydata1" value="{ItensConference>linhaAmarela}" writeToDom="true"/>
+							</customData>
+							<customData>
+								<core:CustomData key="mydata2" value="{ItensConference>linhaBranca}" writeToDom="true"/>
+							</customData>
+							<cells>
+								<Text text="{ItensConference>Remessa}"/>
+								<Text text="{ItensConference>ItemRemessa}"/>
+								<Text text="{ItensConference>NumMaterial}"/>
+								<Text text="{ItensConference>DescMaterial}"/>
+								<Text text="{ItensConference>QuantFornecida}"/>
+								<Text text="{ItensConference>QtdeConferida}"/>
+								<Text text="{ItensConference>QtdeDiferenca}"/>
+								<ObjectStatus icon="{ItensConference>Icone}" state="{ItensConference>Status}" text="{ItensConference>ErroPick}" textAlign="Left"/>
+								
+								<!--<Text text="{ItensConference>linhaAmarela}" visible="false"/>-->
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+			<footer>
+				<Toolbar>
+					<content>
+						<ToolbarSpacer/>
+						<Button id="idButtonFicha" text="Finalizar Ficha" icon="sap-icon://activity-2" press="onFinalizaFicha" type="Transparent"/>
+						<Button id="idButtonPicking" type="Emphasized" text="Picking" icon="sap-icon://customer-order-entry" press="onPicking"/>
+						<Button id="idButtonRemessa" type="Accept" text="Finalizar Remessa" icon="sap-icon://accept" press="onFinalizaRemessa"/>
+						<Button id="idButtonDelete" type="Reject" text="Delete" icon="sap-icon://sys-cancel" press="onDeleteBeepagemTotal"/>
+						<Button id="idButton" type="Default" text="Limpar" icon="sap-icon://refresh" press="onResetaTela"/>
+					</content>
+				</Toolbar>
+			</footer>
+		</Page>
+	</mvc:View>

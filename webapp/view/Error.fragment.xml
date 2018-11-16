@@ -1,0 +1,11 @@
+<core:FragmentDefinition id="colaborador" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form"
+	xmlns:layout="sap.ui.layout">
+	<Dialog id="idDialog" type="Message" state="Error" title="Falha na Inserção do Item!" initialFocus="endButton" busy="false">
+		<content>
+			<Text id="idMsg" text="" ></Text>
+		</content>
+		<endButton>
+			<Button text="OK" press="onDialogClose"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
